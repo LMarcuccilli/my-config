@@ -11,8 +11,6 @@ return {
 
 		keys = {
 			{ "<leader>e", ":Neotree toggle<CR>", desc = "Toggle Neo-tree" },
-			{ "<leader>o", ":Neotree focus<CR>", desc = "Focus Neo-tree" },
-			{ "<leader>r", ":Neotree reveal<CR>", desc = "Reveal file in tree" },
 		},
 
 		config = function()
@@ -21,6 +19,9 @@ return {
 					follow_current_file = { enabled = true },
 					hijack_netrw_behavior = "open_current",
 					window = {
+						preview = {
+							auto_preview = true,
+						},
 						position = "float",
 						mappings = {
 							["<CR>"] = "open",          -- open file normally
@@ -34,6 +35,17 @@ return {
 					},
 				},
 			})
+			local hls = {
+				"NeoTreeNormal",
+				"NeoTreeNormalNC",
+				"NeoTreeFloatBorder",
+				"NeoTreeFloatTitle",
+				"NeoTreeTitleBar",
+			}
+
+			for _, hl in ipairs(hls) do
+				vim.api.nvim_set_hl(0, hl, { bg = "none" })
+			end
 		end,
 	},
 }
